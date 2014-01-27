@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/main.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>个人资料</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+<link href="twoColFixLtHdr.css" rel="stylesheet" type="text/css" />
+<link href="Spry-UI-1.7/css/Menu/basic/SpryMenuBasic.css" rel="stylesheet" type="text/css" />
+<script src="Spry-UI-1.7/includes/SpryDOMUtils.js" type="text/javascript"></script>
+<script src="Spry-UI-1.7/includes/SpryDOMEffects.js" type="text/javascript"></script>
+<script src="Spry-UI-1.7/includes/SpryWidget.js" type="text/javascript"></script>
+<script src="Spry-UI-1.7/includes/SpryMenu.js" type="text/javascript"></script>
+<script src="Spry-UI-1.7/includes/plugins/MenuBar2/SpryMenuBarKeyNavigationPlugin.js" type="text/javascript"></script>
+<script src="Spry-UI-1.7/includes/plugins/MenuBar2/SpryMenuBarIEWorkaroundsPlugin.js" type="text/javascript"></script>
+<style type="text/css">
+/* BeginOAWidget_Instance_2141544: #MenuBar */
+/* Settable values for skinning a Basic menu via presets. If presets are not sufficient, most skinning should be done in
+	these rules, with the exception of the images used for down or right pointing arrows, which are in the file SpryMenuBasic.css
+	
+	 These assume the following widget classes for menu layout (set in a preset)
+	.MenuBar - Applies to all menubars - default is horizontal bar, all submenus are vertical - 2nd level subs and beyond are pull-right.
+	.MenuBarVertical - vertical main bar; all submenus are pull-right.
+	
+	You can also pass in extra classnames to set your desired top level menu bar layout. Normally, these are set by using a preset. 
+	They only apply to horizontal menu bars:
+		MenuBarLeftShrink - The menu bar will be horizontally 'shrinkwrapped' to be just large enough to hold its items, and left aligned
+		MenuBarRightShrink - Just like MenuBarLeftShrink, but right aligned
+		MenuBarFixedLeft - Fixed at a specified width set in the rule '.MenuBarFixedLeft', and left aligned.  
+		MenuBarFixedCentered -  - Fixed at a specified width set in the rule '.MenuBarFixedCentered', 
+						and centered in its parent container.
+		MenuBarFullwidth - Grows to fill its parent container width.
+ 
+	In general, all rules specified in this file are prefixed by #MenuBar so they only apply to instances of the widget inserted along
+	with the rules. This permits use of multiple MenuBarBasic widgets on the same page with different layouts. Because of IE6 limitations,
+	there are a few rules where this was not possible. Those rules are so noted in comments.
+	
+*/
+
+#MenuBar  {
+	background-color:#48403a;	
+	font-family: Arial, Helvetica, sans-serif; /* Specify fonts on on MenuBar and subMenu MenuItemContainer, so MenuItemContainer,
+												MenuItem, and MenuItemLabel
+												at a given level all use same definition for ems.
+												Note that this means the size is also inherited to child submenus, 
+												so use caution in using relative sizes other than
+												100% on submenu fonts. */
+	font-weight: bold;
+	font-size: 20px;
+	font-style: normal;
+	padding:0;	
+	border-color: #ffffff #ffffff #ffffff #ffffff; 
+	border-width:0px;
+	border-style: none none none none;
+}
+/* Caution: because ID+class selectors do not work properly in IE6, but we want to restrict these rules to just this
+widget instance, we have used string-concatenated classnames for our selectors for the layout type of the menubar 
+in this section. These have very low specificity, so be careful not to accidentally override them. */
+
+.MenuBar br { /* using just a class so it has same specificity as the ".MenuBarFixedCentered br" rule bleow */
+	display:none;
+}
+.MenuBarLeftShrink {
+	float: left; /* shrink to content, as well as float the MenuBar */
+	width: auto;
+}
+.MenuBarRightShrink {
+	float: right; /* shrink to content, as well as float the MenuBar */
+	width: auto;
+}
+.MenuBarFixedLeft {
+	float: left;
+	width: 960px;
+}
+.MenuBarFixedCentered {
+	float: none;
+	width: 960px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.MenuBarFixedCentered br {
+	clear:both;
+	display:block;
+}
+.MenuBarFixedCentered .SubMenu br {
+	display:none;
+}
+.MenuBarFullwidth {
+	float: left;
+	width: 100%;
+}
+
+/* Top level menubar items - these actually apply to all items, and get overridden for 1st or successive level submenus */
+#MenuBar  .MenuItemContainer {
+	padding: 0px 0px 0px 0px; 
+	margin: 0; 	/* Zero out margin  on the item containers. The MenuItem is the active hover area.
+				For most items, we have to do top or bottom padding or borders only on the MenuItem 
+				or a child so we keep the entire submenu tiled with items.
+				Setting this to 0 avoids "dead spots" for hovering. */
+}
+#MenuBar  .MenuItem {
+	padding: 0px 10px 0px 0px; 
+	background-color:transparent;	
+	border-width:0px;
+	border-color: #cccccc #ffffff #cccccc #ffffff; 
+	border-style: none solid none solid;
+}
+#MenuBar  .MenuItemFirst {
+	border-style: none none none none;
+}
+#MenuBar .MenuItemLast {
+	border-style: none solid none none;
+}
+
+#MenuBar  .MenuItem  .MenuItemLabel{
+	text-align:center;
+	line-height:1.4em;
+	color:#e9dccf;
+	background-color:#48403a;
+	padding: 6px 15px 6px 25px;
+	width: 110px;
+	 
+}
+.SpryIsIE6 #MenuBar  .MenuItem  .MenuItemLabel{
+	width:1em; /* Equivalent to min-width in modern browsers */
+}
+
+/* First level submenu items */
+#MenuBar .SubMenu  .MenuItem {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	font-style: normal;
+	background-color:#ffffff;
+	padding:0px 0px 0px 0px;
+	border-width:1px;
+	border-color: #cccccc #cccccc #cccccc #cccccc; 
+	/* Border styles are overriden by first and last items */
+	border-style: solid none none none;
+}
+#MenuBar  .SubMenu .MenuItemFirst {
+	border-style: solid none none none;
+}
+#MenuBar  .SubMenu .MenuItemFirst .MenuItemLabel{
+	padding-top: 6px; 
+}
+#MenuBar .SubMenu .MenuItemLast {
+	border-style: solid none none none;
+}
+#MenuBar .SubMenu .MenuItemLast .MenuItemLabel{
+	padding-bottom: 6px; 
+}
+#MenuBar .SubMenu .MenuItem .MenuItemLabel{
+	text-align:left;
+	line-height:1em;	
+	background-color:#48403a;
+	color:#e9dccf;
+	padding: 6px 20px 6px 5px; 
+	width: 7em;
+	width:auto; 
+}
+
+/* Hover states for containers, items and labels */
+#MenuBar .MenuItemHover {
+	background-color: #999999;
+	border-color: #cccccc #cccccc #cccccc #cccccc; 
+}
+
+#MenuBar .MenuItemWithSubMenu.MenuItemHover .MenuItemLabel{
+	background-color: #999999; /* consider exposing this prop separately*/
+	color: #000000;
+}
+#MenuBar .MenuItemHover .MenuItemLabel{
+	background-color: #999999;
+	color: #000000;
+}
+#MenuBar .SubMenu .MenuItemHover {
+	background-color: #cccccc; 
+	border-color: #cccccc #cccccc #cccccc #cccccc; 
+}
+
+#MenuBar .SubMenu .MenuItemHover .MenuItemLabel{
+	background-color: #cccccc; 
+	color: #333333;
+}
+/* Submenu properties -- First level of submenus */
+#MenuBar .SubMenuVisible {
+	background-color: #ffffff;
+	min-width:0%;  /* This keeps the menu from being skinnier than the parent MenuItemContainer - nice to have but not available on ie6 */
+	border-color: #ffffff #ffffff #ffffff #ffffff; 
+	border-width:0px;
+	border-style: none none none none;
+}
+#MenuBar.MenuBar .SubMenuVisible {/* For Horizontal menubar only */
+	top: 100%;	/* 100% is at the bottom of parent menuItemContainer */
+	left:0px; /* 'left' may need tuning depending upon borders or padding applied to menubar MenuItemContainer or MenuItem, 
+					and your personal taste.
+					0px will left align the dropdown with the content area of the MenuItemContainer. Assuming you keep the margins 0 
+					on MenuItemContainer and MenuItem on the parent
+					menubar, making this equal the sum of the MenuItemContainer & MenuItem padding-left will align 
+					the dropdown with the left of the menu item label.*/
+	z-index:10;
+}
+#MenuBar.MenuBarVertical .SubMenuVisible {
+	top: 0px;	
+	left:100%;
+	min-width:0px; /* Do not neeed to match width to parent MenuItemContainer - items will prevent total collapse */
+}
+/* Submenu properties -- Second level submenu and beyond - these are visible descendents of .MenuLevel1 */
+#MenuBar .MenuLevel1 .SubMenuVisible {
+	background-color: #ffffff;
+	min-width:0px; /* Do not neeed to match width to parent MenuItemContainer - items will prevent total collapse*/
+	top: 0px;	/* If desired, you can move this down a smidge to separate top item''s submenu from menubar - 
+				that is really only needed for submenu on first item of MenuLevel1, or you can make it negative to make submenu more
+				vertically 'centered' on its invoking item */
+	left:100%; /* If you want to shift the submenu left to partially cover its invoking item, you can add a margin-left with a 
+				negative value to this rule. Alternatively, if you use fixed-width items, you can change this left value
+				to use px or ems to get the offset you want. */
+}
+/* IE6 rules - you can delete these if you do not want to support IE6 */
+
+/* A note about multiple classes in IE6.
+ * Some of the rules above use multiple class names on an element for selection, such as "hover" (MenuItemHover) and "has a subMenu" (MenuItemWithSubMenu),
+ * giving the selector '.MenuItemWithSubMenu.MenuItemHover'.
+ * Unfortunately IE6 does not support using mutiple classnames in a selector for an element. For a selector such as '.foo.bar.baz', IE6 ignores
+ * all but the final classname (here, '.baz'), and sets the specificity accordingly, counting just one of those classs as significant. To get around this 
+ * problem, we use the plugin in SpryMenuBarIEWorkaroundsPlugin.js to generate compound classnames for IE6, such as 'MenuItemWithSubMenuHover'. 
+ * Since there are a lot of these needed, the plugin does not generate the extra classes for modern browsers, and we use the CSS2 style mutltiple class
+ * syntax for that. Since IE6 both applies rules where 
+ * it should not, and gets the specificity wrong too, we have to order rules carefully, so the rule misapplied in IE6 can be overridden. 
+ * So, we put the multiple class rule first. IE6 will mistakenly apply this rule.  We follow this with the single-class rule that it would 
+ * mistakenly override, making sure the  misinterpreted IE6 specificity is the same as the single-class selector, so the latter wins. 
+ * We then create a copy of the multiple class rule, adding a '.SpryIsIE6' class as context, and making sure the specificity for
+ * the selector is high enough to beat the single-class rule in the "both classes match" case. We place the IE6 rule at the end of the 
+ * css style block to make it easy to delete if you want to drop IE6 support.
+ * If you decide you do not need IE6 support, you can get rid of these, as well as the inclusion of the SpryMenuBarIEWorkaroundsPlugin.js script.
+ * The 'SpryIsIE6' class is placed on the HTML element by  the script in SpryMenuBarIEWorkaroundsPlugin.js if the browser is Internet Explorer 6. This avoids the necessity of IE conditional comments for these rules.
+ */
+.SpryIsIE6 #MenuBar .MenuBarView .MenuItemWithSubMenuHover .MenuItemLabel /* IE6 selector  */{
+	background-color: #999999; /* consider exposing this prop separately*/
+	color: #000000;
+}
+.SpryIsIE6 #MenuBar .MenuBarView .SubMenu .MenuItemWithSubMenuHover .MenuItemLabel/* IE6 selector  */{
+	background-color: #cccccc; /* consider exposing this prop separately*/
+	color: #333333;
+}
+.SpryIsIE6 #MenuBar .SubMenu .SubMenu  /* IE6 selector  */{
+	margin-left: -0px; /* Compensates for at least part of an IE6 "double padding" version of the "double margin" bug */
+}
+
+	
+/* EndOAWidget_Instance_2141544 */
+</style>
+<script type="text/xml">
+<!--
+<oa:widgets>
+  <oa:widget wid="2141544" binding="#MenuBar" />
+</oa:widgets>
+-->
+</script>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="header"><img src="images/logo.png" alt="logo" width="960" height="120" usemap="#Map" border="0" />
+    <map name="Map" id="Map">
+      <area shape="poly" coords="483,3,224,117" href="#" />
+      <area shape="rect" coords="469,115,470,125" href="http://www.loreah.com/index.html" alt="index" />
+      <area shape="rect" coords="0,0,469,120" href="http://www.loreah.com/index.html" alt="index" />
+      <area shape="rect" coords="505,-1,960,122" href="http://www.loreah.com/en/index.html" alt="index in english" />
+    </map>
+  <!-- end .header -->
+  <ul id="MenuBar">
+    <!-- InstanceBeginEditable name="menu" -->
+      <li><a href="#">网站简介</a>
+        <ul>
+          <li><a href="#introduction">主要内容</a></li>
+          <li><a href="http://www.loreah.com/me.html">咨询师简介</a></li>
+          <li><a href="http://www.loreah.com/news.html">更新与通知</a></li>
+        </ul>
+      </li>
+      <li> <a href="http://www.loreah.com/information.html">咨询须知</a>
+        <ul>
+          <li> <a href="http://www.loreah.com/new.html">初访必读</a></li>
+          <li> <a href="http://www.loreah.com/protocol.html">服务条款</a></li>
+          <li><a href="http://www.loreah.com/details.html">参考资料</a></li>
+        </ul>
+      </li>
+      <li><a href="http://www.loreah.com/appointment.html">网上预约</a>
+        <ul>
+          <li><a href="http://www.loreah.com/short.html">短期咨询</a></li>
+          <li><a href="http://www.loreah.com/long.html">长期咨询</a></li>
+          <li><a href="http://www.loreah.com/time.html">时间变动</a></li>
+          <li><a href="http://www.loreah.com/end.html">咨询终止</a></li>
+        </ul>
+      </li>
+      <li><a href="http://www.loreah.com/work.html">个人作品</a>
+        <ul>
+          <li><a href="http://www.loreah.com/psywork.html">心理相关</a></li>
+          <li><a href="http://www.loreah.com/otherwork.html">其他作品</a>
+            <ul>
+              <li><a href="http://www.loreah.com/art.html">绘画/绘本</a></li>
+              <li><a href="http://www.loreah.com/writing.html">写作</a></li>
+              <li><a href="http://www.loreah.com/game.html">游戏</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="http://www.loreah.com/questions.html">常见问题</a></li>
+      <li><a href="http://www.loreah.com/contact.html">与我联系</a></li>
+      <!-- InstanceEndEditable -->
+  </ul>
+<script type="text/javascript">
+// BeginOAWidget_Instance_2141544: #MenuBar
+var MenuBar = new Spry.Widget.MenuBar2("#MenuBar", {
+      widgetID: "MenuBar",
+	  widgetClass: "MenuBar  MenuBarFullwidth",
+	  insertMenuBarBreak: true,
+      mainMenuShowDelay: 100,
+      mainMenuHideDelay: 200,
+      subMenuShowDelay: 200,
+      subMenuHideDelay: 200
+      });
+// EndOAWidget_Instance_2141544
+  </script>
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <!-- InstanceBeginEditable name="navigation" -->
+      <div align="left"><a href="#">致各位来访者</a>      <a href="#a">咨询相关背景</a>
+      </div>
+      <li><!-- end .sidebar1 -->        </li>
+      <li><a href="#b">咨询特色</a></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <!-- InstanceEndEditable -->
+      <p>&nbsp;</p>
+    </ul>
+  </div>
+  <div class="content"><!-- InstanceBeginEditable name="main" -->
+    <h1>天海砂时 · 咨询师相关的资料    </h1>
+    <h2>&nbsp;</h2>
+    <h2>致各位来访者：</h2>
+    <p>你们来到这里，是为了以最合理的方式处理你们的痛苦、疑惑、困境，是为了救助你们自己，是为了你们自己的成长。身处痛苦之中的人，很容易去接受任何人伸出的援手，在这个时期所受到的挫折对你们的打击也将越大。因此，对你们来说，寻找一位可靠的咨询师是至关重要的事情。</p>
+    <p>什么样的咨询师，是可靠的咨询师？人们过多关注咨询师的价位、学历和机构本身，而常常忽略了更加重要的事情。只要记住三点——</p>
+    <ul>
+      <li>他们应当懂得接纳有关你的一切，而不是用价值观来评判你</li>
+      <li>他们应当擅长倾听，说的话虽然不多，却能让你感到久违的被人理解的感觉</li>
+      <li>他们应当知道自己的长处和短处，做那些能做到的事，坦诚回绝那些做不到的事</li>
+    </ul>
+    <p>有很多咨询师如此，也有很多咨询师也许并不能做到。我能够许诺给你们的，同样也是这三条。</p>
+    <ul>
+      <li>所有的来访者，都是为了改善自己人生而做出努力的英雄。我将始终尊敬你们，一视同仁。</li>
+      <li>我感到我能理解你们。我迄今为止的来访者也认为我能够理解他们。我将继续用真心去努力。</li>
+      <li>我只会接诊那些我非常确信能够掌握、能够妥善处理的案例，以确保你们真正受益。</li>
+    </ul>
+    <p>个人资料会随着时日而改变，能力会增长，经验会累积，但是唯有这三条是不会改变的。信任建立在原则之上，同样的原则适用于任何咨询活动。当你们去其他地方寻找咨询师的时候，也请切记这几点，寻找一个宽容、理解、诚实的咨询师来引导你们。</p>
+    <p>其他方面虽然是次要的，但是也按照惯例，在此做一下介绍。在咨询师了解来访者之前，来访者应先了解咨询师，这样会更安心一些。</p>
+    <p align="right"><a href="#">回到页首</a></p>
+    <p><a name="a" id="a"></a></p>
+    <h2>咨询相关背景</h2>
+    <ul>
+      <li>本科毕业于北京大学医学部</li>
+      <li>完成职业所需的理论与操作培训，考取国家三级资格证书</li>
+      <li>至于二级证书，决定等到硕士毕业后再考</li>
+      <li>学习多种流派，具体经验如下：
+        <ul>
+          <li>在认知流派方面经验最为丰富，是最主要的咨询方式，来访者反映效果较好</li>
+          <li>行为主义治疗方式熟练，但是在线咨询效果有限，依赖于来访者自身的行动力</li>
+          <li>精神分析方面尚未出师，持续学习中</li>
+          <li>有必要时，沿用人本主义与存在主义的咨询技巧</li>
+        </ul>
+      </li>
+      <li>截止到2014年1月1日，正规咨询的累计小时数约为150小时（达300小时后，将开放全匿名式的网络在线咨询服务）</li>
+      <li>如欲确认个人信息真实性，可前往<a href="http://www.psy525.cn/d12448.html">525网站</a>查证。友情提醒——原则上，心理咨询并不建议由熟人进行，会对社会关系造成潜在消极影响！因此，如果通过照片认出了我，以前关系也很熟的话，请一定要避免在我这里接受任何形式的心理咨询。如有迫切需要，我将为你寻找合适的咨询师进行转介。</li>
+    </ul>
+    <p align="right"><a href="#">回到页首</a></p>
+    <p align="left"><a name="b" id="b"></a></p>
+    <h2>咨询特色</h2>
+    <ul>
+      <li>咨询理念：
+        <ul>
+          <li>人们因为身处痛苦之中，因而寻找离开痛苦的方式。但是，真正有效的方式，往往会带来另一种痛苦，这是成长所必须具有的痛苦。你是否能够得到成长，要看你自己的勇气、毅力，以及对自己和他人的宽容心；能够做到这些，也许你就能够蜕变、重生。</li>
+          <li>你的命运在你自己的手中。即使我铺开一条充满光明的路，最终也要你自己亲自去走。你是真正能够拯救你自己的人，这个过程从你求助于心理咨询的那一刹那就已经开始。</li>
+          <li>每个人都有选择自己生活方式的权利，有改变或不改变的权利。任何一条路，只要通向内心的平宁，就是适合你的路。</li>
+        </ul>
+      </li>
+      <li>咨询风格：
+        <ul>
+          <li>很希望听到来访者做充分而详细的陈述，有利于深入分析</li>
+          <li>对于每个来访者会视其个人特点采用并不完全相同的咨询流派与流程</li>
+          <li>给出的指导大多数时候比较细致，但如果来访者自己擅长思考，则采用启发式</li>
+          <li>有的时候也许会以身作则（情况合适的前提下）</li>
+          <li>鼓励来访者提出任何问题、质疑、困惑</li>
+          <li>总体来说是理性派，并不是情感表达极大丰富的人，尽管能够充分理解并分析情感问题，却很不擅长煽情。但是另一方面，时而会被来访者称为“言语简单，却有着直达内心的力量”的人。不管是分析还是给出建议，通常都是理性的，实用价值比较高</li>
+          <li>原则性强，做事认真，要求严格，但只是对自己而言，对他人总是比较宽容。请来访者们放轻松，在这方面不需要有压力</li>
+          <li>虽然不信教，但是对宗教有足够了解，来访者若有相关宗教信仰，将不影响深入沟通</li>
+        </ul>
+      </li>
+      <li>擅长的咨询领域：
+        <ul>
+          <li>爱情、友情、亲情上受到的创伤</li>
+          <li>学业、生活、工作、社交中遭受的压力与困惑</li>
+          <li>对自己、他人与世界怀有过度消极的情绪，希望得以改变</li>
+          <li>从青少年、成年至老年任何一个阶段的迷茫期</li>
+          <li>希望改善心态，增强能力，以便更好地面对生活</li>
+          <li>无病理基础的躯体化症状，如睡眠问题、无故疼痛、胸闷、心脏惊悸等（需在医院确诊无恙后，方可采用心理咨询）</li>
+        </ul>
+      </li>
+    </ul>
+    <p>（在此并不以常见的焦虑、抑郁、强迫、惊恐发作等方式进行分类，因为你们不是病人，而是希望通过自己的努力摆脱痛苦的正常人，你们的痛苦表现为症状，但根源并不在症状之中，而是在你们自己的生活之中。因此，我也以生活本身的情况做出分类，请认真回想自己过往与现在的经历，这是至关重要的。）</p>
+    <ul>
+      <li>并不擅长的方面：
+        <ul>
+          <li>纯精神分析的疗法还在持续学习中，目前不会提供这方面的咨询</li>
+          <li>并未接受过专门针对10岁以下儿童咨询的实践训练</li>
+          <li>实践经验均为一对一咨询或家庭咨询（限于原生家庭，父母+子女），团体/小组咨询方面缺乏足够的经验</li>
+        </ul>
+      </li>
+      <li>想要更直观地体验我的风格？请访问<a href="http://tieba.baidu.com/f?ie=utf-8&amp;kw=心灵布告板">【心灵布告板】</a>百度贴吧</li>
+    </ul>
+    <p align="right"><a href="#">回到页首</a>  </p>
+    <p align="left">&nbsp;</p>
+  <!-- InstanceEndEditable --><!-- end .content --></div>
+  <div class="footer">Copyright &copy; Loreah W. All Rights Reserved</div>
+  <!-- end .container --></div>
+</body>
+<!-- InstanceEnd --></html>

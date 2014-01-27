@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>Untitled Document</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link href="../twoColFixLtHdr.css" rel="stylesheet" type="text/css" />
+<link href="../Spry-UI-1.7/css/Menu/basic/SpryMenuBasic.css" rel="stylesheet" type="text/css" />
+<script src="../Spry-UI-1.7/includes/SpryDOMUtils.js" type="text/javascript"></script>
+<script src="../Spry-UI-1.7/includes/SpryDOMEffects.js" type="text/javascript"></script>
+<script src="../Spry-UI-1.7/includes/SpryWidget.js" type="text/javascript"></script>
+<script src="../Spry-UI-1.7/includes/SpryMenu.js" type="text/javascript"></script>
+<script src="../Spry-UI-1.7/includes/plugins/MenuBar2/SpryMenuBarKeyNavigationPlugin.js" type="text/javascript"></script>
+<script src="../Spry-UI-1.7/includes/plugins/MenuBar2/SpryMenuBarIEWorkaroundsPlugin.js" type="text/javascript"></script>
+<style type="text/css">
+/* BeginOAWidget_Instance_2141544: #MenuBar */
+/* Settable values for skinning a Basic menu via presets. If presets are not sufficient, most skinning should be done in
+	these rules, with the exception of the images used for down or right pointing arrows, which are in the file SpryMenuBasic.css
+	
+	 These assume the following widget classes for menu layout (set in a preset)
+	.MenuBar - Applies to all menubars - default is horizontal bar, all submenus are vertical - 2nd level subs and beyond are pull-right.
+	.MenuBarVertical - vertical main bar; all submenus are pull-right.
+	
+	You can also pass in extra classnames to set your desired top level menu bar layout. Normally, these are set by using a preset. 
+	They only apply to horizontal menu bars:
+		MenuBarLeftShrink - The menu bar will be horizontally 'shrinkwrapped' to be just large enough to hold its items, and left aligned
+		MenuBarRightShrink - Just like MenuBarLeftShrink, but right aligned
+		MenuBarFixedLeft - Fixed at a specified width set in the rule '.MenuBarFixedLeft', and left aligned.  
+		MenuBarFixedCentered -  - Fixed at a specified width set in the rule '.MenuBarFixedCentered', 
+						and centered in its parent container.
+		MenuBarFullwidth - Grows to fill its parent container width.
+ 
+	In general, all rules specified in this file are prefixed by #MenuBar so they only apply to instances of the widget inserted along
+	with the rules. This permits use of multiple MenuBarBasic widgets on the same page with different layouts. Because of IE6 limitations,
+	there are a few rules where this was not possible. Those rules are so noted in comments.
+	
+*/
+
+#MenuBar  {
+	background-color:#48403a;	
+	font-family: Arial, Helvetica, sans-serif; /* Specify fonts on on MenuBar and subMenu MenuItemContainer, so MenuItemContainer,
+												MenuItem, and MenuItemLabel
+												at a given level all use same definition for ems.
+												Note that this means the size is also inherited to child submenus, 
+												so use caution in using relative sizes other than
+												100% on submenu fonts. */
+	font-weight: bold;
+	font-size: 20px;
+	font-style: normal;
+	padding:0;	
+	border-color: #ffffff #ffffff #ffffff #ffffff; 
+	border-width:0px;
+	border-style: none none none none;
+}
+/* Caution: because ID+class selectors do not work properly in IE6, but we want to restrict these rules to just this
+widget instance, we have used string-concatenated classnames for our selectors for the layout type of the menubar 
+in this section. These have very low specificity, so be careful not to accidentally override them. */
+
+.MenuBar br { /* using just a class so it has same specificity as the ".MenuBarFixedCentered br" rule bleow */
+	display:none;
+}
+.MenuBarLeftShrink {
+	float: left; /* shrink to content, as well as float the MenuBar */
+	width: auto;
+}
+.MenuBarRightShrink {
+	float: right; /* shrink to content, as well as float the MenuBar */
+	width: auto;
+}
+.MenuBarFixedLeft {
+	float: left;
+	width: 960px;
+}
+.MenuBarFixedCentered {
+	float: none;
+	width: 960px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.MenuBarFixedCentered br {
+	clear:both;
+	display:block;
+}
+.MenuBarFixedCentered .SubMenu br {
+	display:none;
+}
+.MenuBarFullwidth {
+	float: left;
+	width: 100%;
+}
+
+/* Top level menubar items - these actually apply to all items, and get overridden for 1st or successive level submenus */
+#MenuBar  .MenuItemContainer {
+	padding: 0px 0px 0px 0px; 
+	margin: 0; 	/* Zero out margin  on the item containers. The MenuItem is the active hover area.
+				For most items, we have to do top or bottom padding or borders only on the MenuItem 
+				or a child so we keep the entire submenu tiled with items.
+				Setting this to 0 avoids "dead spots" for hovering. */
+}
+#MenuBar  .MenuItem {
+	padding: 0px 10px 0px 0px; 
+	background-color:transparent;	
+	border-width:0px;
+	border-color: #cccccc #ffffff #cccccc #ffffff; 
+	border-style: none solid none solid;
+}
+#MenuBar  .MenuItemFirst {
+	border-style: none none none none;
+}
+#MenuBar .MenuItemLast {
+	border-style: none solid none none;
+}
+
+#MenuBar  .MenuItem  .MenuItemLabel{
+	text-align:center;
+	line-height:1.4em;
+	color:#e9dccf;
+	background-color:#48403a;
+	padding: 6px 15px 6px 25px;
+	width: 110px;
+	 
+}
+.SpryIsIE6 #MenuBar  .MenuItem  .MenuItemLabel{
+	width:1em; /* Equivalent to min-width in modern browsers */
+}
+
+/* First level submenu items */
+#MenuBar .SubMenu  .MenuItem {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	font-style: normal;
+	background-color:#ffffff;
+	padding:0px 0px 0px 0px;
+	border-width:1px;
+	border-color: #cccccc #cccccc #cccccc #cccccc; 
+	/* Border styles are overriden by first and last items */
+	border-style: solid none none none;
+}
+#MenuBar  .SubMenu .MenuItemFirst {
+	border-style: solid none none none;
+}
+#MenuBar  .SubMenu .MenuItemFirst .MenuItemLabel{
+	padding-top: 6px; 
+}
+#MenuBar .SubMenu .MenuItemLast {
+	border-style: solid none none none;
+}
+#MenuBar .SubMenu .MenuItemLast .MenuItemLabel{
+	padding-bottom: 6px; 
+}
+#MenuBar .SubMenu .MenuItem .MenuItemLabel{
+	text-align:left;
+	line-height:1em;	
+	background-color:#48403a;
+	color:#e9dccf;
+	padding: 6px 20px 6px 5px; 
+	width: 7em;
+	width:auto; 
+}
+
+/* Hover states for containers, items and labels */
+#MenuBar .MenuItemHover {
+	background-color: #999999;
+	border-color: #cccccc #cccccc #cccccc #cccccc; 
+}
+
+#MenuBar .MenuItemWithSubMenu.MenuItemHover .MenuItemLabel{
+	background-color: #999999; /* consider exposing this prop separately*/
+	color: #000000;
+}
+#MenuBar .MenuItemHover .MenuItemLabel{
+	background-color: #999999;
+	color: #000000;
+}
+#MenuBar .SubMenu .MenuItemHover {
+	background-color: #cccccc; 
+	border-color: #cccccc #cccccc #cccccc #cccccc; 
+}
+
+#MenuBar .SubMenu .MenuItemHover .MenuItemLabel{
+	background-color: #cccccc; 
+	color: #333333;
+}
+/* Submenu properties -- First level of submenus */
+#MenuBar .SubMenuVisible {
+	background-color: #ffffff;
+	min-width:0%;  /* This keeps the menu from being skinnier than the parent MenuItemContainer - nice to have but not available on ie6 */
+	border-color: #ffffff #ffffff #ffffff #ffffff; 
+	border-width:0px;
+	border-style: none none none none;
+}
+#MenuBar.MenuBar .SubMenuVisible {/* For Horizontal menubar only */
+	top: 100%;	/* 100% is at the bottom of parent menuItemContainer */
+	left:0px; /* 'left' may need tuning depending upon borders or padding applied to menubar MenuItemContainer or MenuItem, 
+					and your personal taste.
+					0px will left align the dropdown with the content area of the MenuItemContainer. Assuming you keep the margins 0 
+					on MenuItemContainer and MenuItem on the parent
+					menubar, making this equal the sum of the MenuItemContainer & MenuItem padding-left will align 
+					the dropdown with the left of the menu item label.*/
+	z-index:10;
+}
+#MenuBar.MenuBarVertical .SubMenuVisible {
+	top: 0px;	
+	left:100%;
+	min-width:0px; /* Do not neeed to match width to parent MenuItemContainer - items will prevent total collapse */
+}
+/* Submenu properties -- Second level submenu and beyond - these are visible descendents of .MenuLevel1 */
+#MenuBar .MenuLevel1 .SubMenuVisible {
+	background-color: #ffffff;
+	min-width:0px; /* Do not neeed to match width to parent MenuItemContainer - items will prevent total collapse*/
+	top: 0px;	/* If desired, you can move this down a smidge to separate top item''s submenu from menubar - 
+				that is really only needed for submenu on first item of MenuLevel1, or you can make it negative to make submenu more
+				vertically 'centered' on its invoking item */
+	left:100%; /* If you want to shift the submenu left to partially cover its invoking item, you can add a margin-left with a 
+				negative value to this rule. Alternatively, if you use fixed-width items, you can change this left value
+				to use px or ems to get the offset you want. */
+}
+/* IE6 rules - you can delete these if you do not want to support IE6 */
+
+/* A note about multiple classes in IE6.
+ * Some of the rules above use multiple class names on an element for selection, such as "hover" (MenuItemHover) and "has a subMenu" (MenuItemWithSubMenu),
+ * giving the selector '.MenuItemWithSubMenu.MenuItemHover'.
+ * Unfortunately IE6 does not support using mutiple classnames in a selector for an element. For a selector such as '.foo.bar.baz', IE6 ignores
+ * all but the final classname (here, '.baz'), and sets the specificity accordingly, counting just one of those classs as significant. To get around this 
+ * problem, we use the plugin in SpryMenuBarIEWorkaroundsPlugin.js to generate compound classnames for IE6, such as 'MenuItemWithSubMenuHover'. 
+ * Since there are a lot of these needed, the plugin does not generate the extra classes for modern browsers, and we use the CSS2 style mutltiple class
+ * syntax for that. Since IE6 both applies rules where 
+ * it should not, and gets the specificity wrong too, we have to order rules carefully, so the rule misapplied in IE6 can be overridden. 
+ * So, we put the multiple class rule first. IE6 will mistakenly apply this rule.  We follow this with the single-class rule that it would 
+ * mistakenly override, making sure the  misinterpreted IE6 specificity is the same as the single-class selector, so the latter wins. 
+ * We then create a copy of the multiple class rule, adding a '.SpryIsIE6' class as context, and making sure the specificity for
+ * the selector is high enough to beat the single-class rule in the "both classes match" case. We place the IE6 rule at the end of the 
+ * css style block to make it easy to delete if you want to drop IE6 support.
+ * If you decide you do not need IE6 support, you can get rid of these, as well as the inclusion of the SpryMenuBarIEWorkaroundsPlugin.js script.
+ * The 'SpryIsIE6' class is placed on the HTML element by  the script in SpryMenuBarIEWorkaroundsPlugin.js if the browser is Internet Explorer 6. This avoids the necessity of IE conditional comments for these rules.
+ */
+.SpryIsIE6 #MenuBar .MenuBarView .MenuItemWithSubMenuHover .MenuItemLabel /* IE6 selector  */{
+	background-color: #999999; /* consider exposing this prop separately*/
+	color: #000000;
+}
+.SpryIsIE6 #MenuBar .MenuBarView .SubMenu .MenuItemWithSubMenuHover .MenuItemLabel/* IE6 selector  */{
+	background-color: #cccccc; /* consider exposing this prop separately*/
+	color: #333333;
+}
+.SpryIsIE6 #MenuBar .SubMenu .SubMenu  /* IE6 selector  */{
+	margin-left: -0px; /* Compensates for at least part of an IE6 "double padding" version of the "double margin" bug */
+}
+
+	
+/* EndOAWidget_Instance_2141544 */
+</style>
+<script type="text/xml">
+<!--
+<oa:widgets>
+  <oa:widget wid="2141544" binding="#MenuBar" />
+</oa:widgets>
+-->
+</script>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="header"><img src="../images/logo.png" alt="logo" width="960" height="120" usemap="#Map" border="0" />
+    <map name="Map" id="Map">
+      <area shape="poly" coords="483,3,224,117" href="#" />
+      <area shape="rect" coords="469,115,470,125" href="http://www.loreah.com/index.html" alt="index" />
+      <area shape="rect" coords="0,0,469,120" href="http://www.loreah.com/index.html" alt="index" />
+      <area shape="rect" coords="505,-1,960,122" href="http://www.loreah.com/en/index.html" alt="index in english" />
+    </map>
+  <!-- end .header -->
+  <ul id="MenuBar">
+    <!-- TemplateBeginEditable name="menu" -->
+      <li><a href="#">网站简介</a>
+        <ul>
+          <li><a href="#introduction">主要内容</a></li>
+          <li><a href="http://www.loreah.com/me.html">咨询师简介</a></li>
+          <li><a href="http://www.loreah.com/news.html">更新与通知</a></li>
+        </ul>
+      </li>
+      <li> <a href="http://www.loreah.com/information.html">咨询须知</a>
+        <ul>
+          <li> <a href="http://www.loreah.com/new.html">初访必读</a></li>
+          <li> <a href="http://www.loreah.com/protocol.html">服务条款</a></li>
+          <li><a href="http://www.loreah.com/details.html">参考资料</a></li>
+        </ul>
+      </li>
+      <li><a href="http://www.loreah.com/appointment.html">网上预约</a>
+        <ul>
+          <li><a href="http://www.loreah.com/short.html">短期咨询</a></li>
+          <li><a href="http://www.loreah.com/long.html">长期咨询</a></li>
+          <li><a href="http://www.loreah.com/time.html">时间变动</a></li>
+          <li><a href="http://www.loreah.com/end.html">咨询终止</a></li>
+        </ul>
+      </li>
+      <li><a href="http://www.loreah.com/work.html">个人作品</a>
+        <ul>
+          <li><a href="http://www.loreah.com/psywork.html">心理相关</a></li>
+          <li><a href="http://www.loreah.com/otherwork.html">其他作品</a>
+            <ul>
+              <li><a href="http://www.loreah.com/art.html">绘画/绘本</a></li>
+              <li><a href="http://www.loreah.com/writing.html">写作</a></li>
+              <li><a href="http://www.loreah.com/game.html">游戏</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="http://www.loreah.com/questions.html">常见问题</a></li>
+      <li><a href="http://www.loreah.com/contact.html">与我联系</a></li>
+      <!-- TemplateEndEditable -->
+  </ul>
+<script type="text/javascript">
+// BeginOAWidget_Instance_2141544: #MenuBar
+var MenuBar = new Spry.Widget.MenuBar2("#MenuBar", {
+      widgetID: "MenuBar",
+	  widgetClass: "MenuBar  MenuBarFullwidth",
+	  insertMenuBarBreak: true,
+      mainMenuShowDelay: 100,
+      mainMenuHideDelay: 200,
+      subMenuShowDelay: 200,
+      subMenuHideDelay: 200
+      });
+// EndOAWidget_Instance_2141544
+  </script>
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <!-- TemplateBeginEditable name="navigation" -->
+      <div align="left"><a href="#">第一个选项</a>      <a href="#">第二个选项</a>
+      </div>
+      <li><!-- end .sidebar1 -->        </li>
+      <li><a href="#">第三个选项</a></li>
+      <li><a href="#">依此类推</a></li>
+      <li></li>
+      <!-- TemplateEndEditable -->
+      <p>&nbsp;</p>
+    </ul>
+  </div>
+  <div class="content"><!-- TemplateBeginEditable name="main" -->
+    <h1>正文</h1>
+    <p>正文的格式已经准备好了~！</p>
+    <p><a href="http://www.adobe.com/go/adc_css_layouts">链接也准备好了！</a></p>
+    <p>往里面写内容就可以啦~:D</p>
+    <h2>&nbsp;</h2>
+  <!-- TemplateEndEditable --><!-- end .content --></div>
+  <div class="footer">Copyright &copy; Loreah W. All Rights Reserved</div>
+  <!-- end .container --></div>
+</body>
+</html>
