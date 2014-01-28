@@ -21,6 +21,7 @@ h1, h2, h3, h4, h5, h6, p {
 	font-family: 微软雅黑, "Microsoft Yahei", "Microsoft Yahei UI", Yahei, Verdana;
 	color: #48403A;
 	font-weight: normal;
+	line-height: 25px;
 }
 a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
 	border: none;
@@ -96,6 +97,7 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 	font-family: 微软雅黑, "Microsoft Yahei", "Microsoft Yahei UI", Yahei, Verdana;
 	font-weight: normal;
 	color: #48403A;
+	line-height: 25px;
 }
 
 /* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */

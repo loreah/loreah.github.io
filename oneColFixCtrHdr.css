@@ -20,6 +20,7 @@ h1, h2, h3, h4, h5, h6, p {
 	font-family: 微软雅黑, "Microsoft Yahei", "Microsoft Yahei UI", Yahei, Verdana;
 	color: #48403A;
 	font-weight: normal;
+	line-height: 24px;
 }
 a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
 	border: none;
